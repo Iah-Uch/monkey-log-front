@@ -7,9 +7,10 @@ export default function LazyImage({ source }) {
     <Image
       source={source}
       h={"sm"}
-      w={"100%"}
-      resizeMode="contain"
+      w={"95%"}
       alt="LazyImage"
+      borderRadius={10}
+      alignSelf={"center"}
     />
   );
 }
