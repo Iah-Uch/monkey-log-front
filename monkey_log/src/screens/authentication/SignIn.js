@@ -9,6 +9,7 @@ import * as yup from "yup";
 import { Input } from "../../components/InputComponent";
 import { useNavigation } from "@react-navigation/native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { useAuth } from "../../contexts/auth";
 
 if (!global.btoa) {
   global.btoa = encode;
@@ -27,6 +28,7 @@ const signInSchema = yup.object({
 });
 
 const SignIn = () => {
+  const { signIn } = useAuth();
   const { navigate } = useNavigation();
   const {
     control,
@@ -35,14 +37,16 @@ const SignIn = () => {
   } = useForm({
     resolver: yupResolver(signInSchema),
   });
-  const handleLogin = (data) => {
-    const { email, password } = data;
-    console.log(email);
-    console.log(password);
-    // Lógica para autenticar o usuário com o email e senha fornecidos
-    // Aqui você pode fazer uma chamada a uma API ou implementar sua própria lógica de autenticação
+  const handleLogin = async (data) => {
+    try {
+      await signIn(data);
+      // Lógica para autenticar o usuário com o email e senha fornecidos
+      // Aqui você pode fazer uma chamada a uma API ou implementar sua própria lógica de autenticação
+    } catch (error) {
+      console.error(error);
+      // Trate o erro aqui, como mostrar uma mensagem de erro ao usuário
+    }
   };
-
   return (
     <VStack flex={1} justifyContent={"space-around"} bgColor={"#0B1416"}>
       <KeyboardAwareScrollView>

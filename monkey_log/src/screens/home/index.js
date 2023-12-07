@@ -1,23 +1,12 @@
 import React from "react";
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { VStack, Text } from "native-base";
+import FeedComponent from "../../components/FeedComponent";
 
 const Home = () => {
   return (
-    <View style={styles.container}>
-      <Text>Home</Text>
-      <StatusBar style="auto" />
-    </View>
+    <VStack bgColor={"#0B1416"} flex={1}>
+      <FeedComponent />
+    </VStack>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
-
 export default Home;
