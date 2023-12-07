@@ -30,7 +30,7 @@ export default function FeedComponent() {
       if (total && pageNumber > total) return;
       setLoading(true);
       const response = await fetch(
-        `https://e819-177-10-234-141.ngrok-free.app/feed?_expand=author&_limit=5&_page=${pageNumber}`
+        `https://6f0e-177-10-234-141.ngrok-free.app/feed?_expand=author&_limit=5&_page=${pageNumber}`
       );
 
       if (!response.ok) {
@@ -64,8 +64,9 @@ export default function FeedComponent() {
   const renderFeed = (item) => {
     return (
       <Box marginTop={1}>
+        {/* Header */}
         <HStack padding={15} flexDirection={"row"} alignItems={"center"}>
-          {/* Header */}
+          {/* Avatar */}
           <Image
             source={{ uri: item.author.avatar }}
             alt="image1"
@@ -74,11 +75,10 @@ export default function FeedComponent() {
             borderRadius={16}
             marginRight={3}
           />
-          {/* Avatar */}
+          {/* Name*/}
           <Text color={"white"} fontWeight={"bold"}>
             {item.author.name}
           </Text>
-          {/* Name*/}
         </HStack>
         <Text color={"white"} padding={3} lineHeight={8} fontWeight={"bold"}>
           {/* Description */}
