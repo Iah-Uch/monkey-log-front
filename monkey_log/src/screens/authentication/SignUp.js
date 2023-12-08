@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { StatusBar } from "expo-status-bar";
 import { TouchableOpacity } from "react-native"
-import { VStack, Heading, Box, Button, Text } from "native-base";
+import { VStack, Heading, Box, Button, Text, Image } from "native-base";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Controller, useForm } from "react-hook-form";
 import { encode, decode } from "js-base64";
@@ -62,27 +62,25 @@ const SignIn = () => {
           mt={16}
           fontFamily="heading"
           ml={6}
-          fontSize={"2xl"}
+            fontSize={"3xl"}
         >
-          Sign in up {"\n"}
-          {
-            <Heading color="white" fontSize={"xl"}>
-              Lorem Ipsum is simply{" "}
-            </Heading>
-          }
-        </Heading>
+            Sign up to {"\n"}
+          </Heading>
+
+          <Image alt="Image logo monkey log" source={require("../../../assets/image-removebg-preview.png")} ml={3} w={"80"} /> 
+
         <Heading
           textAlign="left"
-          color="white"
-          mt={6}
+            color="white"
           fontFamily="heading"
+            fontWeight={"light"}
           ml={6}
-          fontSize={"sm"}
+            fontSize={"lg"}
         >
           If you don’t have an account register you can{"\n"}
           {
             <TouchableOpacity onPress={() => navigate("SignIn")}>
-            <Text color= {"#4D47C3"} fontWeight= {"bold"} >
+                <Text color={"#4D47C3"} fontWeight={"bold"} fontSize={"lg"} >
               Login here !
             </Text>
             </TouchableOpacity>
@@ -93,7 +91,7 @@ const SignIn = () => {
           name="name"
           render={({ field: { onChange, value } }) => (
             <Input
-              mt={16}
+              mt={8}
               placeholder="User name"
               onChangeText={onChange}
               secureTextEntr

@@ -30,12 +30,10 @@ export default function FeedComponent() {
       if (total && pageNumber > total) return;
       setLoading(true);
       const response = await fetch(
-        `https://6f0e-177-10-234-141.ngrok-free.app/feed?_expand=author&_limit=5&_page=${pageNumber}`
+        `http://192.168.1.109:3000/feed?_expand=author&_limit=5&_page=${pageNumber}`
       );
 
-      if (!response.ok) {
-        throw new Error("Erro ao carregar feed");
-      }
+
 
       const data = await response.json();
       const totalItems = response.headers.get("X-Total-Count");
