@@ -10,6 +10,7 @@ import { Input } from "../../components/InputComponent";
 import { useNavigation } from "@react-navigation/native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useAuth } from "../../contexts/auth";
 
 if (!global.btoa) {
   global.btoa = encode;
@@ -34,6 +35,7 @@ const signInSchema = yup.object({
 
 const SignIn = () => {
   const { navigate } = useNavigation();
+  const { signIn } = useAuth();
   const {
     control,
     handleSubmit,
@@ -42,14 +44,14 @@ const SignIn = () => {
     resolver: yupResolver(signInSchema),
   });
   const handleLogin = async (data) => {
-    const { name, email, password, confirm_password } = data;
-    console.log(name);
-    console.log(email);
-    console.log(password);
-    console.log(confirm_password);
-    await AsyncStorage.setItem("@user", email)
-    // Lógica para autenticar o usuário com o email e senha fornecidos
-    // Aqui você pode fazer uma chamada a uma API ou implementar sua própria lógica de autenticação
+    try {
+      await signIn(data);
+      // Lógica para autenticar o usuário com o email e senha fornecidos
+      // Aqui você pode fazer uma chamada a uma API ou implementar sua própria lógica de autenticação
+    } catch (error) {
+      console.error(error);
+      // Trate o erro aqui, como mostrar uma mensagem de erro ao usuário
+    }
   };
 
   return (

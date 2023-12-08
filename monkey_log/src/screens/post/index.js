@@ -14,7 +14,7 @@ const Post = () => {
     try {
       setLoading(true);
       const response = await fetch(
-        `https://6f0e-177-10-234-141.ngrok-free.app/feed`,
+        `http://192.168.1.103:3000/feed`,
         {
           method: 'POST',
           headers: {

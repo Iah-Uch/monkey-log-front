@@ -30,7 +30,7 @@ export default function FeedComponent() {
       if (total && pageNumber > total) return;
       setLoading(true);
       const response = await fetch(
-        `http://192.168.1.109:3000/feed?_expand=author&_limit=5&_page=${pageNumber}`
+        `http://192.168.1.103:3000/feed?_expand=author&_limit=5&_page=${pageNumber}`//npx json-server --host 0.0.0.0 server.json -w --port 3000
       );
 
 
@@ -38,7 +38,7 @@ export default function FeedComponent() {
       const data = await response.json();
       const totalItems = response.headers.get("X-Total-Count");
 
-      setTotal(Math.floor(totalItems / 5));
+      setTotal(Math.floor(totalItems / 1));
       setFeed(shouldRefresh ? data : [...feed, ...data]);
       setPage(pageNumber + 1);
       setLoading(false);
@@ -105,7 +105,6 @@ export default function FeedComponent() {
               name="arrow-up-bold-outline"
               size={24}
               color="white"
-              onPress={handleLike}
               style={{ alignSelf: "center" }}
             />
             <Text color={"white"} padding={2}>
@@ -115,7 +114,6 @@ export default function FeedComponent() {
               name="arrow-down-bold-outline"
               size={24}
               color="white"
-              onPress={handleDislike}
               style={{ alignSelf: "center" }}
             />
           </Box>
